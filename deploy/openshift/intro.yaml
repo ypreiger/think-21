@@ -1,0 +1,130 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: intro-data
+  namespace: think-21
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: intro
+  namespace: think-21
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: intro
+  template:
+    metadata:
+      labels:
+        app: intro
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: intro
+          image: image-registry.openshift-image-registry.svc:5000/think-21/intro:latest
+          imagePullPolicy: Always
+          command: ["/opt/app-root/bin/python3.11", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PUBLIC_URL
+              value: https://intro-think-21.apps.ocp.7hrxw.sandbox880.opentlc.com
+            - name: QUESTIONNAIRE_URL
+              value: https://questionnaire-think-21.apps.ocp.7hrxw.sandbox880.opentlc.com
+            - name: DATA_DIR
+              value: /data
+            - name: HOME
+              value: /tmp
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: intro-session
+                  key: SESSION_SECRET
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: intro-oauth
+                  key: GOOGLE_CLIENT_ID
+                  optional: true
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: intro-oauth
+                  key: GOOGLE_CLIENT_SECRET
+                  optional: true
+            - name: LINKEDIN_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: intro-oauth
+                  key: LINKEDIN_CLIENT_ID
+                  optional: true
+            - name: LINKEDIN_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: intro-oauth
+                  key: LINKEDIN_CLIENT_SECRET
+                  optional: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+            runAsNonRoot: true
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: intro-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: intro
+  namespace: think-21
+spec:
+  selector:
+    app: intro
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: intro
+  namespace: think-21
+spec:
+  to:
+    kind: Service
+    name: intro
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

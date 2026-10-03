@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: questionnaire-data
+  namespace: think-21
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: questionnaire
+  namespace: think-21
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: questionnaire
+  template:
+    metadata:
+      labels:
+        app: questionnaire
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: questionnaire
+          image: image-registry.openshift-image-registry.svc:5000/think-21/questionnaire:latest
+          imagePullPolicy: Always
+          command: ["/opt/app-root/bin/python3.11", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPEECH_URL
+              value: http://speech:8080
+            - name: DATA_DIR
+              value: /data
+            - name: HOME
+              value: /tmp
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+            runAsNonRoot: true
+          volumeMounts:
+            - name: data
+              mountPath: /data
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: questionnaire-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: questionnaire
+  namespace: think-21
+spec:
+  selector:
+    app: questionnaire
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: questionnaire
+  namespace: think-21
+spec:
+  to:
+    kind: Service
+    name: questionnaire
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect

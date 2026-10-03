@@ -1,0 +1,98 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: speech-models
+  namespace: think-21
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speech
+  namespace: think-21
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: speech
+  template:
+    metadata:
+      labels:
+        app: speech
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: speech
+          image: image-registry.openshift-image-registry.svc:5000/think-21/speech:latest
+          imagePullPolicy: Always
+          command: ["/opt/app-root/bin/python3.11", "-m", "uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
+          ports:
+            - containerPort: 8080
+          env:
+            - name: WHISPER_MODEL
+              value: medium
+            - name: WHISPER_COMPUTE
+              value: int8
+            - name: WHISPER_DEVICE
+              value: cpu
+            - name: WHISPER_BEAM
+              value: "1"
+            - name: HF_HOME
+              value: /models
+            - name: HOME
+              value: /tmp
+          resources:
+            requests:
+              cpu: "1"
+              memory: 4Gi
+            limits:
+              cpu: "4"
+              memory: 8Gi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+            runAsNonRoot: true
+          volumeMounts:
+            - name: models
+              mountPath: /models
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            periodSeconds: 15
+            failureThreshold: 80
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /live
+              port: 8080
+            periodSeconds: 20
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: speech-models
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: speech
+  namespace: think-21
+spec:
+  selector:
+    app: speech
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080

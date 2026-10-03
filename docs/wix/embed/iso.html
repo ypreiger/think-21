@@ -1,0 +1,329 @@
+<!-- Paste this entire file into Wix: Add Elements, Embed Code, Popular Embeds, Embed HTML, Enter Code. Desktop height 500px. Mobile height 700px. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Spinnaker&display=swap">
+<style>
+:root {
+  --navy: #0b1c4d;
+  --teal: #5aa4a4;
+  --deep: #2b8580;
+  --gold: #d4d200;
+  --paper: #f4f8f8;
+  --ink: #303030;
+  --line: #d5e2e2;
+  --hero: #070b12;
+  --max: 1040px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--deep); }
+
+a:hover { color: var(--navy); }
+
+a:focus-visible,
+.btn:focus-visible,
+.nav-toggle-label:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.wrap {
+  width: min(var(--max), calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 16px 28px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--navy);
+  text-decoration: none;
+  font-family: Spinnaker, "Trebuchet MS", sans-serif;
+  font-size: 22px;
+}
+
+.brand img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.nav-toggle,
+.nav-toggle-label { display: none; }
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-left: auto;
+}
+
+.nav a {
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav a[aria-current="page"] {
+  color: var(--deep);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hero {
+  background-color: var(--hero);
+  background-image: linear-gradient(rgba(7, 11, 18, 0.78), rgba(7, 11, 18, 0.78)), url("https://static.wixstatic.com/media/7bf4a3_21d0b3f419454740a67be3be58010476~mv2.jpg");
+  background-position: center;
+  background-size: cover;
+  color: #f4f8f8;
+}
+
+.hero-inner { padding: 88px 0 76px; max-width: 740px; }
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font-family: Spinnaker, "Trebuchet MS", sans-serif;
+  font-size: 22px;
+}
+
+h1, h2, h3 { font-family: Spinnaker, "Trebuchet MS", sans-serif; font-weight: 400; }
+
+h1 {
+  margin: 0 0 16px;
+  color: #f4f8f8;
+  font-size: 52px;
+  line-height: 1.12;
+}
+
+.lede { margin: 0 0 28px; font-size: 18px; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 18px 22px; align-items: center; }
+
+.btn {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 16px 26px;
+}
+
+.btn:hover { color: #fff; background: #4e9696; }
+
+.hero .text-link { color: #f4f8f8; }
+
+.section { padding: 64px 0; }
+
+.section h2,
+.band h2,
+.page-head h1 {
+  color: var(--deep);
+  font-size: 34px;
+  margin: 0 0 14px;
+}
+
+.page-head {
+  padding: 56px 0 8px;
+}
+
+.page-head h1 { color: var(--navy); font-size: 48px; }
+
+.kicker {
+  margin: 0 0 8px;
+  color: var(--deep);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 26px;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-size: 28px;
+}
+
+.card p { margin: 0 0 16px; }
+
+.band { background: var(--paper); }
+
+.band .section { padding: 48px 0; }
+
+.stack { display: grid; gap: 28px; }
+
+.note {
+  border-left: 4px solid var(--teal);
+  padding: 4px 0 4px 16px;
+  margin: 18px 0 0;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.links { margin: 0; padding-left: 18px; }
+
+.links li { margin: 8px 0; }
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; }
+
+.questions li {
+  position: relative;
+  counter-increment: q;
+  padding: 14px 0 14px 52px;
+  border-bottom: 1px solid var(--line);
+}
+
+.questions li::before {
+  content: counter(q, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 14px;
+  color: var(--deep);
+  font-family: Spinnaker, "Trebuchet MS", sans-serif;
+}
+
+.contact-row { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 8px; }
+
+.tag {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 2px 8px;
+  border: 1px solid var(--teal);
+  color: var(--deep);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sheet-wrap { overflow-x: auto; }
+
+table.sheet {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+table.sheet th {
+  text-align: left;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+table.sheet th,
+table.sheet td {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 12px 12px 0;
+  vertical-align: top;
+}
+
+ol.aspects { margin: 0; padding-left: 1.3em; }
+
+ol.aspects li { margin: 8px 0; }
+
+.days { list-style: none; margin: 0; padding: 0; }
+
+.days li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.days strong { color: var(--navy); }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 28px;
+  color: var(--navy);
+  font-size: 14px;
+}
+
+.site-footer p { margin: 0 0 6px; }
+
+@media (max-width: 800px) {
+  .wrap { width: min(var(--max), calc(100% - 32px)); }
+  h1, .page-head h1 { font-size: 36px; }
+  .grid, .split { grid-template-columns: 1fr; }
+  .hero-inner { padding: 56px 0 48px; }
+  .nav-toggle-label {
+    display: inline-block;
+    margin-left: auto;
+    color: var(--navy);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 8px 28px 18px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+  }
+  .nav-toggle:checked ~ .nav { display: flex; }
+  .site-header { flex-wrap: wrap; }
+}
+
+</style>
+<div class="t21-root">
+
+    <section class="page-head">
+      <div class="wrap">
+        <p class="kicker">Separate, and secondary</p>
+        <h1>ISO</h1>
+        <p class="lede">Quality, environmental, safety, and information-security work sits with VP Quality, not in the Think21 catalog. This page stays short on purpose.</p>
+        <p class="note">vp-quality.com is not open yet. There is no button until that site is actually live. A Think21 account is not a VP Quality account.</p>
+        <p>Older ISO essays can remain in <a href="https://www.think-21.com/blog">Insights</a>. They are articles.</p>
+      </div>
+    </section>
+
+</div>

@@ -1,3 +1,7 @@
 .bashrc
 .kodeboard/worktrees/
 kodeboard/worktrees/
+__pycache__/
+*.pyc
+.DS_Store
+.env

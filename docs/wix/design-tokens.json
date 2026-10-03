@@ -1,0 +1,44 @@
+{
+  "source": "Published homepage https://www.think-21.com/ inspected 28 September 2026",
+  "editor": "Wix classic Editor (Thunderbolt classic bundles). Not Wix Studio.",
+  "htmlLangObserved": "ru",
+  "contentLanguage": "en",
+  "colors": {
+    "navy": { "hex": "#0B1C4D", "rgb": "rgb(11, 28, 77)", "use": "Headings on light backgrounds, header wordmark" },
+    "teal": { "hex": "#5AA4A4", "rgb": "rgb(90, 164, 164)", "use": "Primary button fill, some nav emphasis" },
+    "deepTeal": { "hex": "#2B8580", "rgb": "rgb(43, 133, 128)", "use": "Section headings such as Give your business the boost" },
+    "gold": { "hex": "#D4D200", "rgb": "rgb(212, 210, 0)", "use": "Small eyebrow on the dark hero" },
+    "paper": { "hex": "#F4F8F8", "rgb": "rgb(244, 248, 248)", "use": "Hero body text" },
+    "ink": { "hex": "#303030", "rgb": "rgb(48, 48, 48)", "use": "Body copy" },
+    "white": { "hex": "#FFFFFF", "rgb": "rgb(255, 255, 255)", "use": "Header bar" },
+    "heroBackground": { "hex": "#000000", "note": "Near-black hero with a blue-green glow image, not a flat color" }
+  },
+  "type": {
+    "headings": "Spinnaker",
+    "body": "Montserrat",
+    "secondaryBody": "Futura LT Book (Wix font futura-lt-w01-book) on some paragraphs",
+    "displayAccent": "Magistral appears on some hero spans",
+    "buttonLabel": "Montserrat Medium, about 15px, letter-spacing about 0.75px, uppercase",
+    "heroSizesObserved": {
+      "eyebrow": "25px",
+      "heroTitle": "50px",
+      "sectionTitle": "35px to 45px",
+      "body": "18px"
+    }
+  },
+  "button": {
+    "fill": "#5AA4A4",
+    "label": "#FFFFFF",
+    "radius": "0px",
+    "case": "uppercase"
+  },
+  "logo": {
+    "fileAlt": "logo.png",
+    "note": "Circular blue-green globe mark. It currently collides with the header menu on desktop.",
+    "mediaHost": "static.wixstatic.com, Wix media id prefix 7bf4a3"
+  },
+  "doNotInvent": [
+    "A new Think21 logo file. Keep the current mark until the owner supplies a replacement.",
+    "New brand colors. Revisions need owner approval."
+  ]
+}

@@ -1,0 +1,398 @@
+<!-- Paste this entire file into Wix: Add Elements, Embed Code, Popular Embeds, Embed HTML, Enter Code. Desktop height 2550px. Mobile height 4000px. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Spinnaker&display=swap">
+<style>
+:root {
+  --navy: #0b1c4d;
+  --teal: #5aa4a4;
+  --deep: #2b8580;
+  --gold: #d4d200;
+  --paper: #f4f8f8;
+  --ink: #303030;
+  --line: #d5e2e2;
+  --hero: #070b12;
+  --max: 1040px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--deep); }
+
+a:hover { color: var(--navy); }
+
+a:focus-visible,
+.btn:focus-visible,
+.nav-toggle-label:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.wrap {
+  width: min(var(--max), calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 16px 28px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--navy);
+  text-decoration: none;
+  font-family: Spinnaker, "Trebuchet MS", sans-serif;
+  font-size: 22px;
+}
+
+.brand img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.nav-toggle,
+.nav-toggle-label { display: none; }
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-left: auto;
+}
+
+.nav a {
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav a[aria-current="page"] {
+  color: var(--deep);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hero {
+  background-color: var(--hero);
+  background-image: linear-gradient(rgba(7, 11, 18, 0.78), rgba(7, 11, 18, 0.78)), url("https://static.wixstatic.com/media/7bf4a3_21d0b3f419454740a67be3be58010476~mv2.jpg");
+  background-position: center;
+  background-size: cover;
+  color: #f4f8f8;
+}
+
+.hero-inner { padding: 88px 0 76px; max-width: 740px; }
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font-family: Spinnaker, "Trebuchet MS", sans-serif;
+  font-size: 22px;
+}
+
+h1, h2, h3 { font-family: Spinnaker, "Trebuchet MS", sans-serif; font-weight: 400; }
+
+h1 {
+  margin: 0 0 16px;
+  color: #f4f8f8;
+  font-size: 52px;
+  line-height: 1.12;
+}
+
+.lede { margin: 0 0 28px; font-size: 18px; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 18px 22px; align-items: center; }
+
+.btn {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 16px 26px;
+}
+
+.btn:hover { color: #fff; background: #4e9696; }
+
+.hero .text-link { color: #f4f8f8; }
+
+.section { padding: 64px 0; }
+
+.section h2,
+.band h2,
+.page-head h1 {
+  color: var(--deep);
+  font-size: 34px;
+  margin: 0 0 14px;
+}
+
+.page-head {
+  padding: 56px 0 8px;
+}
+
+.page-head h1 { color: var(--navy); font-size: 48px; }
+
+.kicker {
+  margin: 0 0 8px;
+  color: var(--deep);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 26px;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-size: 28px;
+}
+
+.card p { margin: 0 0 16px; }
+
+.band { background: var(--paper); }
+
+.band .section { padding: 48px 0; }
+
+.stack { display: grid; gap: 28px; }
+
+.note {
+  border-left: 4px solid var(--teal);
+  padding: 4px 0 4px 16px;
+  margin: 18px 0 0;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.links { margin: 0; padding-left: 18px; }
+
+.links li { margin: 8px 0; }
+
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; }
+
+.questions li {
+  position: relative;
+  counter-increment: q;
+  padding: 14px 0 14px 52px;
+  border-bottom: 1px solid var(--line);
+}
+
+.questions li::before {
+  content: counter(q, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 14px;
+  color: var(--deep);
+  font-family: Spinnaker, "Trebuchet MS", sans-serif;
+}
+
+.contact-row { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 8px; }
+
+.tag {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 2px 8px;
+  border: 1px solid var(--teal);
+  color: var(--deep);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sheet-wrap { overflow-x: auto; }
+
+table.sheet {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+table.sheet th {
+  text-align: left;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+table.sheet th,
+table.sheet td {
+  border-bottom: 1px solid var(--line);
+  padding: 12px 12px 12px 0;
+  vertical-align: top;
+}
+
+ol.aspects { margin: 0; padding-left: 1.3em; }
+
+ol.aspects li { margin: 8px 0; }
+
+.days { list-style: none; margin: 0; padding: 0; }
+
+.days li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.days strong { color: var(--navy); }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 28px;
+  color: var(--navy);
+  font-size: 14px;
+}
+
+.site-footer p { margin: 0 0 6px; }
+
+@media (max-width: 800px) {
+  .wrap { width: min(var(--max), calc(100% - 32px)); }
+  h1, .page-head h1 { font-size: 36px; }
+  .grid, .split { grid-template-columns: 1fr; }
+  .hero-inner { padding: 56px 0 48px; }
+  .nav-toggle-label {
+    display: inline-block;
+    margin-left: auto;
+    color: var(--navy);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 8px 28px 18px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+  }
+  .nav-toggle:checked ~ .nav { display: flex; }
+  .site-header { flex-wrap: wrap; }
+}
+
+</style>
+<div class="t21-root">
+
+    <section class="page-head">
+      <div class="wrap">
+        <p class="kicker">BPM</p>
+        <h1>BPM-360</h1>
+        <p class="lede">Adaptive business-process management for VUCA and BANI conditions. The handbook treats BPM as a set of lenses and a lifecycle, not as a single diagram. Nothing on this page is a consulting engagement.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap split">
+        <div>
+          <h2>What the manuscript already contains</h2>
+          <p>A readable handbook: why the usual method mix breaks apart, what BPM-360 includes and what it refuses to be, then the working parts. Structural logic. Several lenses on the same process. Event-driven work. Decisions under uncertainty. TRIZ for contradictions. A production-readiness review before go-live.</p>
+          <p>After that, ten aspects you can re-enter, and a method library. The golden path in the manuscript is an example, not a law: start from purpose, use design thinking, choose lenses, frame the contradiction, run an event storm, then pass a readiness gate.</p>
+        </div>
+        <article class="card">
+          <p class="tag">Draft offer</p>
+          <h3>Handbook</h3>
+          <p>The book file exists in manuscript. It is not attached to a Wix product, and it has no price. When it is approved, the same product will show here and in the Shop.</p>
+        </article>
+      </div>
+    </section>
+    <section class="band">
+      <div class="section">
+        <div class="wrap">
+          <h2>Ten aspects</h2>
+          <p>A loop, not a waterfall. You can return to an earlier aspect when the situation changes.</p>
+          <ol class="aspects">
+            <li>Strategy and goal setting</li>
+            <li>Customer focus and value delivery</li>
+            <li>Process discovery and modeling</li>
+            <li>Implementation and delivery</li>
+            <li>Technology and automation enablement</li>
+            <li>Performance measurement and analytics</li>
+            <li>Continuous improvement and optimization</li>
+            <li>Risk, constraints, and resilience</li>
+            <li>Change and adaptation</li>
+            <li>Governance and compliance</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="wrap">
+        <h2>Production readiness</h2>
+        <p>The handbook’s production-readiness framework is the gate between “the project is finished” and “the operation can carry it.” It checks three pillars before go-live. The detailed question list stays in the workbook file. It is not printed here.</p>
+        <div class="grid">
+          <article class="card">
+            <h3>People</h3>
+            <p>Roles, staffing, training, and who owns support after launch.</p>
+          </article>
+          <article class="card">
+            <h3>Process</h3>
+            <p>Updated procedures, controlled inputs and outputs, metrics, escalation, and the rules that apply.</p>
+          </article>
+          <article class="card">
+            <h3>Technology</h3>
+            <p>Capacity, monitoring, security and privacy, backup and recovery.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="band">
+      <div class="section">
+        <div class="wrap">
+          <h2>BPM products</h2>
+          <div class="sheet-wrap">
+            <table class="sheet">
+              <thead><tr><th>Product</th><th>State</th><th>Notes</th></tr></thead>
+              <tbody>
+                <tr><td>BPM-360 handbook</td><td>Draft</td><td>Manuscript exists. Hidden in the Shop until price, license, and file are set.</td></tr>
+                <tr><td>Production Readiness workbook</td><td>Placeholder</td><td>The gate is specified. The sellable workbook file is not packaged.</td></tr>
+                <tr><td>Method-card set</td><td>Placeholder</td><td>The handbook names a toolbox of methods, from event storming and BPMN to root-cause analysis. Cards are not a separate file yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</div>
